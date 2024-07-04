@@ -1,14 +1,19 @@
 <template>
-  <div class="login-container">
+  <div class="auth-container">
     <h2>Login</h2>
     <form @submit.prevent="login">
       <div class="form-group">
         <label>Email</label>
-        <input type="email" v-model="email" required>
+        <input type="email" v-model="email" placeholder="Email" required />
       </div>
       <div class="form-group">
         <label>Senha</label>
-        <input type="password" v-model="password" required>
+        <input
+          type="password"
+          v-model="password"
+          placeholder="Senha"
+          required
+        />
       </div>
       <div class="form-group">
         <label>Tipo de Usuário</label>
@@ -18,30 +23,31 @@
         </select>
       </div>
       <button type="submit">Login</button>
+      <router-link to="/register">Ir para o Cadastro</router-link>
     </form>
   </div>
 </template>
 
 <script>
-import { ref } from 'vue';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import { useRouter } from 'vue-router';
+import { ref } from "vue";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { useRouter } from "vue-router";
 
 export default {
   setup() {
-    const email = ref('');
-    const password = ref('');
-    const userType = ref('atendente');
+    const email = ref("");
+    const password = ref("");
+    const userType = ref("atendente");
     const auth = getAuth();
     const router = useRouter();
 
     const login = async () => {
       try {
         await signInWithEmailAndPassword(auth, email.value, password.value);
-        if (userType.value === 'atendente') {
-          router.push('/atendimento');
-        } else if (userType.value === 'medico') {
-          router.push('/visualizar-atendimentos');
+        if (userType.value === "atendente") {
+          router.push("/atendimento");
+        } else if (userType.value === "medico") {
+          router.push("/visualizar-atendimentos");
         }
       } catch (error) {
         alert(`Erro ao fazer login: ${error.message}`);
@@ -54,7 +60,7 @@ export default {
 </script>
 
 <style scoped>
-.login-container {
+.auth-container {
   max-width: 400px;
   margin: auto;
   padding: 20px;
@@ -65,6 +71,7 @@ export default {
 
 h2 {
   text-align: center;
+  margin-bottom: 20px;
 }
 
 form {
@@ -95,12 +102,12 @@ form {
 button {
   padding: 10px;
   font-size: 16px;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   border: none;
   cursor: pointer;
   border-radius: 4px;
-  margin-top: 10px;
+  margin: 10px 0;
   align-self: center;
 }
 
