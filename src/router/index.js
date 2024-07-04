@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Login from '../components/login.vue';
 import Register from '../components/Register.vue';
-import Atendimento from '../components/Atendimento.vue';  // Verifique esta linha
+import Atendimento from '../components/atendimento.vue';  // Verifique esta linha
 import VisualizarAtendimentos from '../components/VisualizarAtendimentos.vue';
 
 const routes = [
