@@ -38,40 +38,40 @@
   </template>
   
   <script>
-  import { ref, onMounted } from 'vue';
-  import { collection, getDocs } from 'firebase/firestore';
-  import { db } from '../firebaseConfig';
-  import { useRouter } from 'vue-router';
-  import { getAuth, onAuthStateChanged } from 'firebase/auth';
-  
-  export default {
-    setup() {
-      const atendimentos = ref([]);
-      const atendimentosCollection = collection(db, 'atendimentos');
-      const router = useRouter();
-      const auth = getAuth();
-  
-      const fetchAtendimentos = async () => {
-        const querySnapshot = await getDocs(atendimentosCollection);
-        atendimentos.value = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
-      };
-  
-      onMounted(() => {
-        onAuthStateChanged(auth, user => {
-          if (!user) {
-            router.push('/login');
-          } else {
-            fetchAtendimentos();
-          }
-        });
+import { ref, onMounted } from 'vue';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../firebaseConfig'; // Certifique-se de que o caminho está correto
+import { useRouter } from 'vue-router';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+
+export default {
+  setup() {
+    const atendimentos = ref([]);
+    const atendimentosCollection = collection(db, 'atendimentos');
+    const router = useRouter();
+    const auth = getAuth();
+
+    const fetchAtendimentos = async () => {
+      const querySnapshot = await getDocs(atendimentosCollection);
+      atendimentos.value = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
+    };
+
+    onMounted(() => {
+      onAuthStateChanged(auth, user => {
+        if (!user) {
+          router.push('/login');
+        } else {
+          fetchAtendimentos();
+        }
       });
-  
-      return {
-        atendimentos,
-      };
-    },
-  };
-  </script>
+    });
+
+    return {
+      atendimentos,
+    };
+  },
+};
+</script>
   
   <style scoped>
   .visualizar-atendimentos-container {
