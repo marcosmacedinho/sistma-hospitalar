@@ -1,19 +1,14 @@
-// src/firebaseConfig.js
 import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
-import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDVnU3UtVTfyKQVxrdpWgwm7iLbS3F2Sw4",
-  authDomain: "hospital-1951d.firebaseapp.com",
-  projectId: "hospital-1951d",
-  storageBucket: "hospital-1951d.appspot.com",
-  messagingSenderId: "294600042958",
-  appId: "1:294600042958:web:47a0c5aac703110706639f"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
 
-const firebaseApp = initializeApp(firebaseConfig);
-const db = getFirestore(firebaseApp);
-const auth = getAuth(firebaseApp);
+const app = initializeApp(firebaseConfig);
 
-export { db, auth, firebaseApp };
+export default app;
