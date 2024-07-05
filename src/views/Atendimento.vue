@@ -48,13 +48,12 @@
         </div>
         <div class="form-group">
           <label>Temperatura</label>
-          <input type="number" v-model="temperatura" required>
+          <input type="number" step="0.1" v-model="temperatura" required>
         </div>
         <div class="form-group">
           <label>Pressão Arterial</label>
           <input type="text" v-model="pressaoArterial" required>
         </div>
-        
         <div class="form-group">
           <label>Cefaleia</label>
           <select v-model="cefaleia">
@@ -129,7 +128,7 @@ export default {
     const endereco = ref('');
     const telefone = ref('');
     const sintomas = ref('');
-    const temperatura = ref(0);
+    const temperatura = ref('');
     const pressaoArterial = ref('');
     const cefaleia = ref('');
     const vomito = ref('');
@@ -154,7 +153,7 @@ export default {
           endereco: endereco.value,
           telefone: telefone.value,
           sintomas: sintomas.value,
-          temperatura: temperatura.value,
+          temperatura: parseFloat(temperatura.value),
           pressaoArterial: pressaoArterial.value,
           cefaleia: cefaleia.value,
           vomito: vomito.value,
@@ -192,7 +191,7 @@ export default {
       endereco.value = atendimento.endereco;
       telefone.value = atendimento.telefone;
       sintomas.value = atendimento.sintomas;
-      temperatura.value = atendimento.temperatura;
+      temperatura.value = atendimento.temperatura.toString();
       pressaoArterial.value = atendimento.pressaoArterial;
       cefaleia.value = atendimento.cefaleia;
       vomito.value = atendimento.vomito;
@@ -217,7 +216,7 @@ export default {
       endereco.value = '';
       telefone.value = '';
       sintomas.value = '';
-      temperatura.value = 0;
+      temperatura.value = '';
       pressaoArterial.value = '';
       cefaleia.value = '';
       vomito.value = '';
@@ -256,6 +255,13 @@ export default {
       currentStep.value = 1;
     };
 
+    const validateTemperatura = () => {
+      const value = temperatura.value;
+      if (!/^\d+(\.\d+)?$/.test(value)) {
+        temperatura.value = value.slice(0, -1);
+      }
+    };
+
     onMounted(() => {
       onAuthStateChanged(auth, user => {
         if (!user) {
@@ -291,10 +297,12 @@ export default {
       prevStep,
       validateStep1,
       validateStep2,
+      validateTemperatura,
     };
   },
 };
 </script>
+
 
 <style scoped>
 .Atendimento-container {
