@@ -1,5 +1,5 @@
 <template>
-    <div class="atendimento-container">
+    <div class="Atendimento-container">
       <h2>Ficha de Atendimento</h2>
       <form @submit.prevent="submitAtendimento">
         <div class="section">
@@ -211,7 +211,7 @@
   </script>
   
   <style scoped>
-  .atendimento-container {
+  .Atendimento-container {
     max-width: 800px;
     margin: auto;
     padding: 20px;
