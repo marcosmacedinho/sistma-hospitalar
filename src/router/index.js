@@ -1,15 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Login from '../components/Login.vue';
-import Atendimento from '../components/Atendimento.vue';  // Verifique o caminho e a capitalização aqui
-import Register from '../components/Register.vue';
-import VisualizarAtendimentos from '../components/VisualizarAtendimentos.vue';
+import Login from '../components/login.vue';
+import Atendimento from '../components/atendimento.vue';  // Verifique o caminho e a capitalização aqui
+import Register from '../components/register.vue';
+import VisualizarAtendimentos from '../components/visualizarAtendimentos.vue';
 
 const routes = [
-  { path: '/', redirect: '/Login' },
-  { path: '/Login', component: Login },
-  { path: '/Register', component: Register },
-  { path: '/Atendimento', component: Atendimento },
-  { path: '/Visualizar-atendimentos', component: VisualizarAtendimentos },
+  { path: '/', redirect: '/login' },
+  { path: '/login', component: Login },
+  { path: '/register', component: Register },
+  { path: '/atendimento', component: Atendimento },
+  { path: '/visualizar-atendimentos', component: VisualizarAtendimentos },
 ];
 
 const router = createRouter({
