@@ -114,12 +114,14 @@ export default {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
     padding: 20px;
+    text-align: start;
+
   }
   
   .atendimento-header {
     font-weight: bold;
     margin-bottom: 10px;
-    font-size: 18px;
+    font-size: 22px;
   }
   
   .atendimento-details {
