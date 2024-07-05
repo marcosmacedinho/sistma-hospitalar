@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Login from '../components/login.vue';
-import Atendimento from '../components/atendimento.vue';  // Verifique o caminho e a capitalização aqui
-import Register from '../components/register.vue';
-import VisualizarAtendimentos from '../components/visualizarAtendimentos.vue';
+import Login from '../components/Login.vue';
+import Atendimento from '../components/Atendimento.vue';
+import Register from '../components/Register.vue';
+import VisualizarAtendimentos from '../components/VisualizarAtendimentos.vue';
 
 const routes = [
   { path: '/', redirect: '/login' },
