@@ -335,6 +335,7 @@ form {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
+  text-align: start;
 }
 
 .form-group input,
