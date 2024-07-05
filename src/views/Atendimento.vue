@@ -16,6 +16,7 @@
         <div class="form-group">
           <label>Gênero</label>
           <select v-model="genero" required>
+            <option value="" disabled selected>Selecione</option>
             <option value="Masculino">Masculino</option>
             <option value="Feminino">Feminino</option>
             <option value="Outro">Outro</option>
@@ -53,10 +54,7 @@
           <label>Pressão Arterial</label>
           <input type="text" v-model="pressaoArterial" required>
         </div>
-        <div class="form-group">
-          <label>Queixas</label>
-          <textarea v-model="historicoMedico"></textarea>
-        </div>
+        
         <div class="form-group">
           <label>Cefaleia</label>
           <select v-model="cefaleia">
@@ -85,35 +83,35 @@
       </div>
     </form>
 
-    <div v-if="atendimentos.length">
+    <div v-if="atendimentos.length" class="atendimentos-registrados">
       <h3>Atendimentos Registrados</h3>
-      <ul>
-        <li v-for="atendimento in atendimentos" :key="atendimento.id">
-          <div class="atendimento-item">
-            <strong>Nome:</strong> {{ atendimento.nomePaciente }}<br>
-            <strong>Data de Nascimento:</strong> {{ atendimento.dataNascimento }}<br>
-            <strong>Gênero:</strong> {{ atendimento.genero }}<br>
-            <strong>Número do SUS:</strong> {{ atendimento.numeroSUS }}<br>
-            <strong>Endereço:</strong> {{ atendimento.endereco }}<br>
-            <strong>Telefone:</strong> {{ atendimento.telefone }}<br>
-            <strong>Sintomas:</strong> {{ atendimento.sintomas }}<br>
-            <strong>Temperatura:</strong> {{ atendimento.temperatura }}<br>
-            <strong>Pressão Arterial:</strong> {{ atendimento.pressaoArterial }}<br>
-            <strong>Queixas:</strong> {{ atendimento.historicoMedico }}<br>
-            <strong>Cefaleia:</strong> {{ atendimento.cefaleia }}<br>
-            <strong>Vômito:</strong> {{ atendimento.vomito }}<br>
-            <strong>Dores no Corpo:</strong> {{ atendimento.doresCorpo }}<br>
-            <div class="atendimento-actions">
-              <button @click="editAtendimento(atendimento)">Editar</button>
-              <button @click="deleteAtendimento(atendimento)">Excluir</button>
-            </div>
+      <div class="card-container">
+        <div v-for="atendimento in atendimentos" :key="atendimento.id" class="card">
+          <div class="card-content">
+            <h4><strong>Paciente: </strong>{{ atendimento.nomePaciente }}</h4>
+            <p><strong>Data de Nascimento:</strong> {{ atendimento.dataNascimento }}</p>
+            <p><strong>Gênero:</strong> {{ atendimento.genero }}</p>
+            <p><strong>Número do SUS:</strong> {{ atendimento.numeroSUS }}</p>
+            <p><strong>Endereço:</strong> {{ atendimento.endereco }}</p>
+            <p><strong>Telefone:</strong> {{ atendimento.telefone }}</p>
+            <p><strong>Sintomas:</strong> {{ atendimento.sintomas }}</p>
+            <p><strong>Temperatura:</strong> {{ atendimento.temperatura }}</p>
+            <p><strong>Pressão Arterial:</strong> {{ atendimento.pressaoArterial }}</p>
+            <p><strong>Cefaleia:</strong> {{ atendimento.cefaleia }}</p>
+            <p><strong>Vômito:</strong> {{ atendimento.vomito }}</p>
+            <p><strong>Dores no Corpo:</strong> {{ atendimento.doresCorpo }}</p>
           </div>
-          <hr>
-        </li>
-      </ul>
+          <div class="card-actions">
+            <button @click="editAtendimento(atendimento)">Editar</button>
+            <button @click="deleteAtendimento(atendimento)">Excluir</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
+
+
 
 <script>
 import { ref, onMounted, computed } from 'vue';
@@ -380,29 +378,58 @@ button:hover {
   background-color: #45a049;
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
+.atendimentos-registrados {
+  margin-top: 40px;
 }
 
-.atendimento-item {
-  background: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 500px;
+  padding: 20px;
   margin-bottom: 20px;
-  padding: 15px;
 }
 
-.atendimento-actions {
-  margin-top: 10px;
+.card-content {
+  margin-bottom: 20px;
+  text-align: start;
 }
 
-.atendimento-actions button {
-  margin-right: 10px;
+.card-content h4 {
+  margin-top: 0;
+  font-size: 20px;
+  color: #333;
 }
 
-.saving-feedback {
-  text-align: center;
-  margin-top: 20px;
+.card-content p {
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+.card-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.card-actions button {
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-right: 5px;
+}
+
+.card-actions button:hover {
+  background-color: #0b7dda;
 }
 </style>
