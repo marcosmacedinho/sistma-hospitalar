@@ -1,43 +1,55 @@
 <template>
-    <div class="visualizar-atendimentos-container">
-      <h2>Atendimentos Registrados</h2>
-      <div v-if="atendimentos.length">
-        <div class="atendimentos-list">
-          <div v-for="atendimento in atendimentos" :key="atendimento.id" class="atendimento-item">
-            <div class="atendimento-header">
-              <strong>{{ atendimento.nomePaciente }}</strong> - {{ atendimento.idade }} anos ({{ atendimento.genero }})
-            </div>
-            <div class="atendimento-details">
-              <div class="info-item">
-                <strong>Endereço:</strong> {{ atendimento.endereco }}
-              </div>
-              <div class="info-item">
-                <strong>Telefone:</strong> {{ atendimento.telefone }}
-              </div>
-              <div class="info-item">
-                <strong>Sintomas:</strong> {{ atendimento.sintomas }}
-              </div>
-              <div class="info-item">
-                <strong>Peso:</strong> {{ atendimento.peso }} kg
-              </div>
-              <div class="info-item">
-                <strong>Altura:</strong> {{ atendimento.altura }} cm
-              </div>
-              <div class="info-item">
-                <strong>Histórico Médico:</strong> {{ atendimento.historicoMedico }}
-              </div>
-            </div>
-            <hr>
+  <div class="visualizar-atendimentos-container">
+    <h2>Atendimentos Registrados</h2>
+    <div v-if="atendimentos.length">
+      <div class="atendimentos-list">
+        <div v-for="atendimento in atendimentos" :key="atendimento.id" class="atendimento-item">
+          <div class="atendimento-header">
+            <strong>{{ atendimento.nomePaciente }}</strong> - ({{ atendimento.genero }})
           </div>
+          <div class="atendimento-details">
+            <div class="info-item">
+              <strong>Data de Nascimento:</strong> {{ atendimento.dataNascimento }}
+            </div>
+            <div class="info-item">
+              <strong>Número do SUS:</strong> {{ atendimento.numeroSUS }}
+            </div>
+            <div class="info-item">
+              <strong>Endereço:</strong> {{ atendimento.endereco }}
+            </div>
+            <div class="info-item">
+              <strong>Telefone:</strong> {{ atendimento.telefone }}
+            </div>
+            <div class="info-item">
+              <strong>Sintomas:</strong> {{ atendimento.sintomas }}
+            </div>
+            <div class="info-item">
+              <strong>Temperatura:</strong> {{ atendimento.temperatura }} °C
+            </div>
+            <div class="info-item">
+              <strong>Pressão Arterial:</strong> {{ atendimento.pressaoArterial }}
+            </div>
+            <div class="info-item">
+              <strong>Cefaleia:</strong> {{ atendimento.cefaleia }}
+            </div>
+            <div class="info-item">
+              <strong>Vômito:</strong> {{ atendimento.vomito }}
+            </div>
+            <div class="info-item">
+              <strong>Dores no Corpo:</strong> {{ atendimento.doresCorpo }}
+            </div>
+          </div>
+          <hr>
         </div>
       </div>
-      <div v-else>
-        <p class="no-records">Nenhum atendimento registrado.</p>
-      </div>
     </div>
-  </template>
-  
-  <script>
+    <div v-else>
+      <p class="no-records">Nenhum atendimento registrado.</p>
+    </div>
+  </div>
+</template>
+
+<script>
 import { ref, onMounted } from 'vue';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebaseConfig'; // Certifique-se de que o caminho está correto
@@ -72,6 +84,7 @@ export default {
   },
 };
 </script>
+
   
   <style scoped>
   .visualizar-atendimentos-container {
