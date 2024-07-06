@@ -47,6 +47,10 @@
           <input type="text" v-model="sintomas" required>
         </div>
         <div class="form-group">
+          <label>Condição Geral do Paciente/Causa</label>
+          <input type="text" v-model="condicaoGeral" required>
+        </div>
+        <div class="form-group">
           <label>Temperatura</label>
           <input type="number" step="0.1" v-model="temperatura" required>
         </div>
@@ -75,10 +79,7 @@
             <option value="NÃO">NÃO</option>
           </select>
         </div>
-        <div class="form-group">
-          <label>Condição Geral do Paciente/Causa</label>
-          <input type="text" v-model="condicaoGeral" required>
-        </div>
+       
         <div class="button-group">
           <button type="button" @click="prevStep">Voltar</button>
           <button type="submit" :disabled="saving">{{ editingAtendimento ? 'Atualizar Atendimento' : 'Salvar Atendimento' }}</button>
