@@ -48,7 +48,7 @@
       </div>
     </div>
     <div v-else>
-      <p class="no-records">Nenhum atendimento registrado hoje.</p>
+      <p class="no-records">Nenhum atendimento registrado até o momento.</p>
     </div>
 
     <h2>Atendimentos Finalizados</h2>
