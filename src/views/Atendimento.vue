@@ -97,13 +97,13 @@
             <p><strong>Número do SUS:</strong> {{ atendimento.numeroSUS }}</p>
             <p><strong>Endereço:</strong> {{ atendimento.endereco }}</p>
             <p><strong>Telefone:</strong> {{ atendimento.telefone }}</p>
-            <p><strong>Sintomas:</strong> {{ atendimento.sintomas }}</p>
+            <p><strong>Principais Sintomas:</strong> {{ atendimento.sintomas }}</p>
+            <p><strong>Condição Geral do Paciente/Causa:</strong> {{ atendimento.condicaoGeral }}</p>
             <p><strong>Temperatura:</strong> {{ atendimento.temperatura }}</p>
             <p><strong>Pressão Arterial:</strong> {{ atendimento.pressaoArterial }}</p>
             <p><strong>Cefaleia:</strong> {{ atendimento.cefaleia }}</p>
             <p><strong>Vômito:</strong> {{ atendimento.vomito }}</p>
             <p><strong>Dores no Corpo:</strong> {{ atendimento.doresCorpo }}</p>
-            <p><strong>Condição Geral do Paciente/Causa:</strong> {{ atendimento.condicaoGeral }}</p>
           </div>
           <div class="card-actions">
             <button @click="editAtendimento(atendimento)">Editar</button>
