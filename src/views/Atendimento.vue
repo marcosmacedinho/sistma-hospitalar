@@ -43,7 +43,7 @@
       <div v-if="currentStep === 2" class="section">
         <h3>Informações Médicas</h3>
         <div class="form-group">
-          <label>Sintomas</label>
+          <label>Principais Sintomas</label>
           <input type="text" v-model="sintomas" required>
         </div>
         <div class="form-group">
@@ -75,6 +75,10 @@
             <option value="NÃO">NÃO</option>
           </select>
         </div>
+        <div class="form-group">
+          <label>Condição Geral do Paciente/Causa</label>
+          <input type="text" v-model="condicaoGeral" required>
+        </div>
         <div class="button-group">
           <button type="button" @click="prevStep">Voltar</button>
           <button type="submit" :disabled="saving">{{ editingAtendimento ? 'Atualizar Atendimento' : 'Salvar Atendimento' }}</button>
@@ -99,6 +103,7 @@
             <p><strong>Cefaleia:</strong> {{ atendimento.cefaleia }}</p>
             <p><strong>Vômito:</strong> {{ atendimento.vomito }}</p>
             <p><strong>Dores no Corpo:</strong> {{ atendimento.doresCorpo }}</p>
+            <p><strong>Condição Geral do Paciente/Causa:</strong> {{ atendimento.condicaoGeral }}</p>
           </div>
           <div class="card-actions">
             <button @click="editAtendimento(atendimento)">Editar</button>
@@ -133,7 +138,7 @@ export default {
     const cefaleia = ref('');
     const vomito = ref('');
     const doresCorpo = ref('');
-    const historicoMedico = ref('');
+    const condicaoGeral = ref('');
     const atendimentos = ref([]);
     const atendimentosCollection = collection(db, 'atendimentos');
     const router = useRouter();
@@ -158,7 +163,7 @@ export default {
           cefaleia: cefaleia.value,
           vomito: vomito.value,
           doresCorpo: doresCorpo.value,
-          historicoMedico: historicoMedico.value,
+          condicaoGeral: condicaoGeral.value,
           data: new Date(),
         };
         if (editingAtendimento.value) {
@@ -196,7 +201,7 @@ export default {
       cefaleia.value = atendimento.cefaleia;
       vomito.value = atendimento.vomito;
       doresCorpo.value = atendimento.doresCorpo;
-      historicoMedico.value = atendimento.historicoMedico;
+      condicaoGeral.value = atendimento.condicaoGeral;
       currentStep.value = 2;
     };
 
@@ -221,7 +226,7 @@ export default {
       cefaleia.value = '';
       vomito.value = '';
       doresCorpo.value = '';
-      historicoMedico.value = '';
+      condicaoGeral.value = '';
       currentStep.value = 1;
     };
 
@@ -285,7 +290,7 @@ export default {
       cefaleia,
       vomito,
       doresCorpo,
-      historicoMedico,
+      condicaoGeral,
       submitAtendimento,
       atendimentos,
       editAtendimento,
@@ -302,6 +307,7 @@ export default {
   },
 };
 </script>
+
 
 
 <style scoped>
