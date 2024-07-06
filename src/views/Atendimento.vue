@@ -409,7 +409,7 @@ button:hover {
   background: white;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 500px;
+  width: 80%;
   padding: 20px;
   margin-bottom: 20px;
 }
@@ -426,13 +426,14 @@ button:hover {
 }
 
 .card-content p {
-  margin: 10px 0;
-  font-size: 16px;
+  margin: 15px 0;
+  font-size: 18px;
 }
 
 .card-actions {
   display: flex;
-  justify-content: center;
+  justify-content: start;
+  gap: 20px;
 }
 
 .card-actions button {
